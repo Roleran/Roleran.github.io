@@ -1,0 +1,327 @@
+/* 编辑风首页：暖纸底、衬线名字、细线。不依赖外部字体，避免字体 CDN 打不开。 */
+
+:root {
+  --paper: #f4f0e8;
+  --ink: #1c1915;
+  --mute: #6f675e;
+  --serif: "Iowan Old Style", "Palatino Linotype", Palatino, "Songti SC", "STSong", "Source Han Serif SC", "Noto Serif SC", serif;
+  --sans: "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  color: var(--ink);
+  background: var(--paper);
+  color-scheme: light;
+}
+
+::selection {
+  color: var(--paper);
+  background: var(--ink);
+}
+
+.page {
+  min-height: 100dvh;
+  padding: clamp(1.5rem, 4vw, 4.25rem);
+}
+
+/* 页眉：左边气质标签，右边站点地址 */
+.mast {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+}
+
+.eyebrow,
+.domain {
+  margin: 0;
+  font-family: var(--sans);
+  font-size: 0.75rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--mute);
+}
+
+/* 第一屏：名字靠下，上面留白 */
+.hero {
+  min-height: calc(100dvh - 7rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding-bottom: clamp(2rem, 8vh, 4.5rem);
+}
+
+h1 {
+  margin: 0;
+  font-family: var(--serif);
+  font-size: clamp(4.5rem, 14vw, 9.5rem);
+  font-weight: 500;
+  line-height: 0.88;
+  letter-spacing: -0.035em;
+}
+
+.rule {
+  width: 2.75rem;
+  height: 1px;
+  margin: 1.35rem 0 1.1rem;
+  background: var(--ink);
+}
+
+.lead {
+  margin: 0;
+  max-width: 12em;
+  font-family: var(--serif);
+  font-size: clamp(1.25rem, 2.2vw, 1.7rem);
+  line-height: 1.45;
+  color: var(--mute);
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.75rem;
+  margin-top: 2.75rem;
+}
+
+/* 项目列表。加号和表单只改本机草稿，不写仓库。 */
+.work {
+  padding: 1rem 0 3rem;
+}
+
+.work-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.work h2 {
+  margin: 0;
+  font-family: var(--sans);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--mute);
+}
+
+.add-project,
+.project-form button,
+.remove-project {
+  font-family: var(--sans);
+  color: var(--ink);
+  background: transparent;
+  border: 1px solid var(--ink);
+  cursor: pointer;
+}
+
+.add-project {
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
+  font-size: 1.25rem;
+  line-height: 1;
+}
+
+.add-project:focus-visible,
+.project-form button:focus-visible,
+.remove-project:focus-visible,
+.project-form input:focus-visible {
+  outline: 1px solid var(--ink);
+  outline-offset: 3px;
+}
+
+.draft-note,
+.form-note,
+.form-error {
+  margin: 0.8rem 0 0;
+  max-width: 36rem;
+  font-family: var(--sans);
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: var(--mute);
+}
+
+.form-error {
+  color: var(--ink);
+}
+
+.project-form {
+  display: grid;
+  gap: 0.85rem;
+  max-width: 28rem;
+  margin-top: 1.25rem;
+}
+
+.project-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  font-family: var(--sans);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  color: var(--mute);
+}
+
+.project-form input {
+  font-family: var(--serif);
+  font-size: 1.05rem;
+  letter-spacing: 0;
+  color: var(--ink);
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(28, 25, 21, 0.28);
+  padding: 0.35rem 0;
+}
+
+.form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.project-form button,
+.remove-project {
+  padding: 0.35rem 0.7rem;
+  font-size: 0.85rem;
+}
+
+.project-list {
+  margin: 1rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.project-list li {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  column-gap: 1rem;
+  border-top: 1px solid rgba(28, 25, 21, 0.16);
+}
+
+.project-list li:last-child {
+  border-bottom: 1px solid rgba(28, 25, 21, 0.16);
+}
+
+.remove-project {
+  display: none;
+}
+
+.is-editing .remove-project {
+  display: inline-block;
+}
+
+.project-list a {
+  display: grid;
+  grid-template-columns: 2.4rem minmax(0, 1fr) auto;
+  column-gap: 1rem;
+  align-items: baseline;
+  padding: 1.15rem 0;
+  color: inherit;
+  text-decoration: none;
+}
+
+.project-list .index,
+.project-list .kind,
+.project-list .note {
+  font-family: var(--sans);
+  color: var(--mute);
+}
+
+.project-list .index {
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+}
+
+.project-list .body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  min-width: 0;
+}
+
+.project-list .title {
+  font-family: var(--serif);
+  font-size: clamp(1.35rem, 2vw, 1.85rem);
+  line-height: 1.2;
+}
+
+.project-list .note {
+  font-size: 0.92rem;
+  line-height: 1.45;
+}
+
+.project-list .kind {
+  font-size: 0.75rem;
+  letter-spacing: 0.14em;
+}
+
+.project-list a:hover .title,
+.project-list a:focus-visible .title {
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
+
+.project-list a:focus-visible {
+  outline: 1px solid var(--ink);
+  outline-offset: 4px;
+}
+
+.links a {
+  font-family: var(--sans);
+  font-size: 0.95rem;
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--ink);
+  padding-bottom: 0.12rem;
+}
+
+.links a:hover,
+.links a:focus-visible {
+  color: var(--mute);
+  border-bottom-color: var(--mute);
+}
+
+.links a:focus-visible {
+  outline: 1px solid var(--ink);
+  outline-offset: 4px;
+}
+
+@media (max-width: 640px) {
+  .eyebrow,
+  .domain {
+    letter-spacing: 0.06em;
+    font-size: 0.68rem;
+  }
+
+  /* 窄屏改回小写，避免大写字距把域名切出屏幕 */
+  .domain {
+    letter-spacing: 0.02em;
+    text-transform: none;
+  }
+
+  h1 {
+    letter-spacing: -0.03em;
+  }
+
+  .project-list a {
+    grid-template-columns: 2rem minmax(0, 1fr);
+    row-gap: 0.35rem;
+  }
+
+  .project-list .kind {
+    grid-column: 2;
+    letter-spacing: 0.08em;
+  }
+}
