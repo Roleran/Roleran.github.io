@@ -15,7 +15,7 @@
     </header>
 
     <main>
-      <!-- 第一屏是名字。项目列表在下面：加号只写这台浏览器，线上内容仍是 projects.js。 -->
+      <!-- 第一屏是名字。项目列表在下面，内容来自 projects.js。 -->
       <section class="hero">
         <h1>Roleran</h1>
         <div class="rule" aria-hidden="true"></div>
@@ -28,24 +28,7 @@
       </section>
 
       <section class="work" id="work">
-        <div class="work-head">
-          <h2>项目</h2>
-          <button type="button" class="add-project" id="add-project" aria-expanded="false" aria-controls="project-form">+</button>
-        </div>
-        <p class="draft-note" id="draft-note" hidden>这是这台浏览器里的草稿。别人看不到，也改不了线上列表。</p>
-        <form class="project-form" id="project-form" hidden>
-          <label>标题<input name="title" type="text" required autocomplete="off"></label>
-          <label>描述<input name="note" type="text" autocomplete="off"></label>
-          <label>链接<input name="href" type="text" required placeholder="https://" autocomplete="off"></label>
-          <label>分类<input name="kind" type="text" placeholder="仓库、工程或链接" autocomplete="off"></label>
-          <p class="form-error" id="form-error" hidden>标题和链接都要填，链接以 http、https 或 mailto 开头。</p>
-          <p class="form-note">加入后只出现在这台浏览器。别人打开网址看不到，也不能改你已经发布的列表。</p>
-          <div class="form-actions">
-            <button type="submit">加入列表</button>
-            <button type="button" id="download-projects">下载 projects.js</button>
-            <button type="button" id="discard-draft">丢弃草稿</button>
-          </div>
-        </form>
+        <h2>项目</h2>
         <ol class="project-list" id="project-list"></ol>
       </section>
     </main>
